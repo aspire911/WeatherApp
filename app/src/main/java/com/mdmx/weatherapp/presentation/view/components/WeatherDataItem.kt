@@ -1,6 +1,7 @@
 package com.mdmx.weatherapp.presentation.view.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -33,7 +34,8 @@ import java.util.Locale
 @Composable
 fun WeatherDataItem(
     weatherData: Data,
-    imageLoader: ImageLoader
+    imageLoader: ImageLoader,
+    onItemClick: () -> Unit
 ) {
     Card(
         backgroundColor = Color.LightGray,
@@ -43,6 +45,7 @@ fun WeatherDataItem(
         Column(modifier = Modifier
             .padding(8.dp)
             .fillMaxWidth()
+            .clickable { onItemClick() }
             ) {
             Row {
 

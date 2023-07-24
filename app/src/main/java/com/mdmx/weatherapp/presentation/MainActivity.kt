@@ -4,10 +4,17 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import coil.ImageLoader
+import com.mdmx.weatherapp.common.Constants.ANIMATION_DURATION
 import com.mdmx.weatherapp.presentation.view.DetailScreen
 import com.mdmx.weatherapp.presentation.view.WeatherScreen
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,7 +36,25 @@ class MainActivity : ComponentActivity() {
             NavHost(navController = navController, startDestination = Screens.Main.route) {
 
                 composable(
-                    route = Screens.Main.route
+                    route = Screens.Main.route,
+                    exitTransition = {
+                        slideOutHorizontally(
+                            targetOffsetX = { -300 },
+                            animationSpec = tween(
+                                durationMillis = ANIMATION_DURATION,
+                                easing = FastOutSlowInEasing
+                            )
+                        ) + fadeOut(animationSpec = tween(ANIMATION_DURATION))
+                    },
+                    popEnterTransition = {
+                        slideInHorizontally(
+                            initialOffsetX = { -300 },
+                            animationSpec = tween(
+                                durationMillis = ANIMATION_DURATION,
+                                easing = FastOutSlowInEasing
+                            )
+                        ) + fadeIn(animationSpec = tween(ANIMATION_DURATION))
+                    }
                 ) {
                     WeatherScreen(
                         navController = navController, viewModel = viewModel,
@@ -38,12 +63,30 @@ class MainActivity : ComponentActivity() {
                 }
 
                 composable(
-                    route = Screens.Detail.route + "/{weatherId}"
+                    route = Screens.Detail.route + "/{weatherId}",
+                    exitTransition = {
+                        slideOutHorizontally(
+                            targetOffsetX = { -300 },
+                            animationSpec = tween(
+                                durationMillis = ANIMATION_DURATION,
+                                easing = FastOutSlowInEasing
+                            )
+                        ) + fadeOut(animationSpec = tween(ANIMATION_DURATION))
+                    },
+                    popEnterTransition = {
+                        slideInHorizontally(
+                            initialOffsetX = { -300 },
+                            animationSpec = tween(
+                                durationMillis = ANIMATION_DURATION,
+                                easing = FastOutSlowInEasing
+                            )
+                        ) + fadeIn(animationSpec = tween(ANIMATION_DURATION))
+                    }
                 ) { backStackEntry ->
                     DetailScreen(
                         backStackEntry.arguments?.getString("weatherId"),
-                        viewModel,
-                        imageLoader
+                        viewModel = viewModel,
+                        imageLoader = imageLoader
                     )
                 }
             }

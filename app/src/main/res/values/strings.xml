@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">WeatherApp</string>
+    <string name="hint">Enter 5 digits ZIP code</string>
+    <string name="weather_description">"Weather description: "</string>
+    <string name="temperature">"Temperature: "</string>
+    <string name="f">"F"</string>
+    <string name="pressure">"Pressure: "</string>
+    <string name="hpa">"hPa"</string>
+    <string name="humidity">"Humidity: "</string>
+    <string name="percent">"%"</string>
+    <string name="description">Icon</string>
+    <string name="mph">mph</string>
+</resources>

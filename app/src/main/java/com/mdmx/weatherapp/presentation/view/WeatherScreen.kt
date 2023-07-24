@@ -24,8 +24,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import coil.ImageLoader
 import com.mdmx.weatherapp.R
+import com.mdmx.weatherapp.presentation.Screens
 import com.mdmx.weatherapp.presentation.WeatherViewModel
 import com.mdmx.weatherapp.presentation.ui.theme.WeatherAppTheme
 import com.mdmx.weatherapp.presentation.view.components.WeatherDataItem
@@ -34,7 +36,8 @@ import com.mdmx.weatherapp.presentation.view.components.WeatherDataItem
 @Composable
 fun WeatherScreen(
     viewModel: WeatherViewModel,
-    imageLoader: ImageLoader
+    imageLoader: ImageLoader,
+    navController: NavController
 ) {
     WeatherAppTheme {
         val state = viewModel.state.value
@@ -73,7 +76,10 @@ fun WeatherScreen(
                         val weatherData = state.weatherData[i]
                         WeatherDataItem(
                             weatherData = weatherData,
-                            imageLoader
+                            imageLoader,
+                            onItemClick = {
+                                navController.navigate(Screens.Detail.route + "/${i}")
+                            }
                         )
                     }
                 }

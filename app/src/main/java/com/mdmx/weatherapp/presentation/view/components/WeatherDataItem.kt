@@ -29,7 +29,6 @@ import com.mdmx.weatherapp.R
 import com.mdmx.weatherapp.common.Constants.ICON_URL_PREFIX
 import com.mdmx.weatherapp.common.Constants.ICON_URL_SUFFIX
 import com.mdmx.weatherapp.domain.model.Data
-import java.util.Locale
 
 @Composable
 fun WeatherDataItem(
@@ -61,10 +60,7 @@ fun WeatherDataItem(
                         .height(70.dp)
                 )
                 Column {
-                    val sdf = java.text.SimpleDateFormat("MM-dd-yyyy - hh:mm a", Locale.getDefault())
-                    val date = java.util.Date(weatherData.dt * 1000L)
-
-                    Text(text = sdf.format(date), fontWeight = FontWeight.Bold)
+                    Text(text = weatherData.dateFormatted, fontWeight = FontWeight.Bold)
                     Text(
                         text = stringResource(R.string.weather_description),
                         fontWeight = FontWeight.Light

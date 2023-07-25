@@ -29,7 +29,6 @@ import com.mdmx.weatherapp.R
 import com.mdmx.weatherapp.common.Constants
 import com.mdmx.weatherapp.presentation.WeatherViewModel
 import com.mdmx.weatherapp.presentation.view.components.WeatherDataDisplay
-import java.util.Locale
 
 @Composable
 fun DetailScreen(
@@ -54,12 +53,8 @@ fun DetailScreen(
                             .padding(16.dp),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-
-                        val sdf = java.text.SimpleDateFormat("MM-dd-yyyy - hh:mm a", Locale.getDefault())
-                        val date = java.util.Date(weatherData.dt * 1000L)
-
                         Text(
-                            text = sdf.format(date),
+                            text = weatherData.dateFormatted,
                             modifier = Modifier.align(Alignment.End)
                         )
                         Spacer(modifier = Modifier.height(16.dp))

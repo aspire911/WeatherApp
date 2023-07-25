@@ -1,6 +1,7 @@
 package com.mdmx.weatherapp.common
 
 object Constants {
+
     const val OPEN_WEATHER_API_KAY = ""
     const val UNITS = "imperial"
     const val BASE_URL = "https://api.openweathermap.org/"

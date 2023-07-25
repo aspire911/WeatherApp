@@ -5,6 +5,7 @@ data class Data(
     val humidity: Int,
     val temp: Double,
     val dt: Long,
+    val dateFormatted: String,
     val weatherDescription: String,
     val weatherIcon: String,
     val windSpeed: Double
